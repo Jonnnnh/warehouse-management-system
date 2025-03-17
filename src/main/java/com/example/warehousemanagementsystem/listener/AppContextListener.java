@@ -3,6 +3,7 @@ package com.example.warehousemanagementsystem.listener;
 import com.example.warehousemanagementsystem.config.DatabaseConfig;
 import com.example.warehousemanagementsystem.connection.ConnectionProvider;
 import com.example.warehousemanagementsystem.connection.DatabaseConnection;
+import com.example.warehousemanagementsystem.connection.DriverManagerStrategy;
 import com.example.warehousemanagementsystem.dao.InventoryOperationDao;
 import com.example.warehousemanagementsystem.dao.ProductDao;
 import com.example.warehousemanagementsystem.dao.UserDao;
@@ -29,7 +30,9 @@ public class AppContextListener implements ServletContextListener {
         try {
             ctx.log("Initializing AppContextListener with JDBC_URL: " + url);
             DatabaseConfig dbConfig = new DatabaseConfig(url, user, password);
-            ConnectionProvider connectionProvider = new DatabaseConnection(dbConfig);
+            DriverManagerStrategy strategy = new DriverManagerStrategy();
+            String driverClassName = "org.postgresql.Driver";
+            ConnectionProvider connectionProvider = new DatabaseConnection(dbConfig, strategy, driverClassName);
 
             UserDao userDao = new UserDao(connectionProvider);
             ProductDao productDao = new ProductDao(connectionProvider);
