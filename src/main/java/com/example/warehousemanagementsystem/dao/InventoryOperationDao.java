@@ -64,9 +64,6 @@ public class InventoryOperationDao {
         return list;
     }
 
-    /**
-     * Пример: найти все операции по конкретному товару.
-     */
     public List<InventoryOperation> findByProductId(long productId) throws SQLException {
         final String sql = "SELECT * FROM inventory_operations WHERE product_id = ? ORDER BY operation_timestamp ASC";
         List<InventoryOperation> list = new ArrayList<>();
@@ -82,10 +79,6 @@ public class InventoryOperationDao {
         }
         return list;
     }
-
-    /**
-     * Аналогично можно сделать findByUserId, findBetweenDates и т.п.
-     */
 
     public void delete(long id) throws SQLException {
         final String sql = "DELETE FROM inventory_operations WHERE id = ?";
