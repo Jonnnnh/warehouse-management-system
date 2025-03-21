@@ -8,7 +8,7 @@ public class Product {
     private String description;
     private BigDecimal price;
     private int quantity;
-    private boolean active;
+    private boolean isActive;
 
     public Product() {
     }
@@ -19,7 +19,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.active = active;
+        this.isActive = active;
     }
 
     public long getId() {
@@ -63,10 +63,10 @@ public class Product {
     }
 
     public boolean isActive() {
-        return active;
+        return isActive;
     }
 
     public void setActive(boolean active) {
-        this.active = active;
+        this.isActive = active;
     }
 }
