@@ -7,6 +7,7 @@ import com.example.warehousemanagementsystem.connection.DriverManagerStrategy;
 import com.example.warehousemanagementsystem.dao.InventoryOperationDao;
 import com.example.warehousemanagementsystem.dao.ProductDao;
 import com.example.warehousemanagementsystem.dao.UserDao;
+import com.example.warehousemanagementsystem.jdbc.Executor;
 import com.example.warehousemanagementsystem.service.OperationService;
 import com.example.warehousemanagementsystem.service.ProductService;
 import com.example.warehousemanagementsystem.service.UserService;
@@ -32,11 +33,13 @@ public class AppContextListener implements ServletContextListener {
             DatabaseConfig dbConfig = new DatabaseConfig(url, user, password);
             DriverManagerStrategy strategy = new DriverManagerStrategy();
             String driverClassName = "org.postgresql.Driver";
-            ConnectionProvider connectionProvider = new DatabaseConnection(dbConfig, strategy, driverClassName);
 
-            UserDao userDao = new UserDao(connectionProvider);
-            ProductDao productDao = new ProductDao(connectionProvider);
-            InventoryOperationDao opDao = new InventoryOperationDao(connectionProvider);
+            ConnectionProvider connectionProvider = new DatabaseConnection(dbConfig, strategy, driverClassName);
+            Executor executor = new Executor(connectionProvider);
+
+            UserDao userDao = new UserDao(executor);
+            ProductDao productDao = new ProductDao(executor);
+            InventoryOperationDao opDao = new InventoryOperationDao(executor);
 
             UserService userService = new UserService(userDao);
             ProductService productService = new ProductService(productDao);
