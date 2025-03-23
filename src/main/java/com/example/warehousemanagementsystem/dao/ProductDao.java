@@ -2,13 +2,10 @@ package com.example.warehousemanagementsystem.dao;
 
 import com.example.warehousemanagementsystem.entity.Product;
 import com.example.warehousemanagementsystem.jdbc.Executor;
-import com.example.warehousemanagementsystem.jdbc.ReflectiveResultSetMapper;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.List;
 
 public class ProductDao extends AbstractCrudDao<Product, Long> {
-    private final ReflectiveResultSetMapper<Product> extractor = new ReflectiveResultSetMapper<>(Product.class);
 
     public ProductDao(Executor executor) {
         super(executor, Product.class);
