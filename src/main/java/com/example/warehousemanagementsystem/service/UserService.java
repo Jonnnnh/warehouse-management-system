@@ -28,7 +28,7 @@ public class UserService {
         user.setRole(UserRole.USER);
         user.setActive(true);
 
-        userDao.createUser(user);
+        userDao.create(user);
         return true;
     }
 
@@ -49,7 +49,7 @@ public class UserService {
             return false;
         }
         user.setRole(newRole);
-        userDao.updateUser(user);
+        userDao.update(user);
         return true;
     }
 
